@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Document</title>
 </head>
 
-<?php include("escolher.php"); ?>
+<?php include("ex05_menu.php"); ?>
 
 <body>
     <p><?php $msg ?></p>

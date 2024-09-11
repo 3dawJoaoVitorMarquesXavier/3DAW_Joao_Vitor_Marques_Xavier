@@ -31,9 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 <body>
 
-    <?php include("escolher.php"); ?>
+    <?php include("ex05_menu.php"); ?>
 
-    <form action="alterar3.php" method="POST">
+    <form action="exer05_alterarDisciplinaConf.php" method="POST">
         <label>nome: </label>
         <input type="text" name="nome" value="<?php echo $alt_nome ?>">
         <label>sigla: </label>

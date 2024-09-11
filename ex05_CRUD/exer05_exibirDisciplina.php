@@ -8,9 +8,12 @@
 </head>
 
 <body>
-    <h1>Alterar</h1>
 
-    <form action="alterar2.php" method="GET">
+    <?php include("ex05_menu.php"); ?>
+
+    <h1>Exibir</h1>
+
+    <form action="exer05_exibirDisciplinaEx.php" method="GET">
         <label>Sigla: </label>
         <input type="text" name="sigla">
         <input type="submit" value="enviar">
