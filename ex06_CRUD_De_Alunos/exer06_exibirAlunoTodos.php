@@ -4,36 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Exibir ALunos</title>
 </head>
 
 <body>
 
-    <?php include("ex05_menu.php"); ?>
+    <?php include("ex06_menu.php"); ?>
 
     <table>
         <tr>
             <th>nome</th>
-            <th>sigla</th>
-            <th>carga</th>
+            <th>matrícula</th>
+            <th>cpf</th>
+            <th>data de nascimento</th>
         </tr>
         <?php
-        $arqDisc = fopen("disciplinas.csv", "r");
+        $arqAlun = fopen("alunos.csv", "r");
 
-        $linha = fgets($arqDisc);
+        $linha = fgets($arqAlun);
 
-        while (!feof($arqDisc)) {
+        while (!feof($arqAlun)) {
             $linha = fgets($arqDisc);
             $linhas = explode(";", $linha);
 
             echo '<tr>';
-            for ($i = 0; $i < 3; $i++) {
-                echo '<td>' . $linhas[$i] . '</td>';
+            for ($i = 0; $i < sizeof($linhas); $i++) {
+                echo '<td>' . strval($linhas[$i]) . '</td>';
             }
             echo '</tr>';
         }
 
-        fclose($arqDisc);
+        fclose($arqAlun);
         ?>
     </table>
 </body>

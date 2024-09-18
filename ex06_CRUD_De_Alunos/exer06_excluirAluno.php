@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Excluir Aluno</title>
 </head>
 
 <body>
 
-    <?php include("ex05_menu.php"); ?>
+    <?php include("escolher.php"); ?>
 
-    <h1>Exibir</h1>
+    <h1>excluir</h1>
 
-    <form action="exer05_exibirDisciplinaEx.php" method="GET">
-        <label>Sigla: </label>
-        <input type="text" name="sigla">
+    <form action="exer06_excluirAlunoConf.php" method="GET">
+        <label>CPF: </label>
+        <input type="text" name="cpf">
         <input type="submit" value="enviar">
     </form>
 
