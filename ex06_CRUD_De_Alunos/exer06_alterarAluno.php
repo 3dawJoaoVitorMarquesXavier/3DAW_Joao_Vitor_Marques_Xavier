@@ -13,7 +13,7 @@
 
     <h1>Alterar Aluno</h1>
 
-    <form action="ex06_alterarAlunoAlt.php" method="GET">
+    <form action="exer06_alterarAlunoAlt.php" method="GET">
         <label>CPF: </label>
         <input type="number" name="cpf">
         <input type="submit" value="enviar">

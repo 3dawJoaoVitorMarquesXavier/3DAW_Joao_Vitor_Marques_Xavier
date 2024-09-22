@@ -1,6 +1,6 @@
 <?php
 
-$msg = "erro";
+$msg = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
@@ -9,20 +9,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $exibirCPF;
     $exibirDATANASC;
 
-    $id = strval($_GET["cpf"]);
+    $msg = "";
 
-    $arqAlunLer = fopen("alunos.csv", "r");
+    $id = $_GET["cpf"];
+
+    $arqAlunLer = fopen("alunos.csv", "r") or die("erro ao criar arquivo");
 
     $linha = fgets($arqAlunLer);
 
     while (!feof($arqAlunLer)) {
         $linha = fgets($arqAlunLer);
-        $linhas = explode(";", $linhas);
+        $linhas = explode(";", $linha);
         if ($linhas[2] == $id) {
-            $exibirNome = $linha[0];
-            $exibirMATRICULA = strval($linha[1]);
-            $exibirCPF = strval($linha[2]);
-            $exibirDATANASC = strval($linha[3]);
+            $exibirNome = $linhas[0];
+            $exibirMATRICULA = strval($linhas[1]);
+            $exibirCPF = strval($linhas[2]);
+            $exibirDATANASC = strval($linhas[3]);
         }
     }
 

@@ -6,24 +6,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $id = $_POST["cpf"];
 
-    $arqAlun = fopen("alunos.csv", "w");
-    $arqAlunNovo = fopen("alunos.csv", "r");
+    $arqAlun = fopen("alunos.csv", "r");
+    $arqAlunNovo = fopen("alunos.csv", "w");
+
+    $msg = "";
 
     $linha = fgets($arqAlun);
 
     while (!feof($arqAlun)) {
         $linha = fgets($arqAlun);
         $linhas = explode($linha, ";");
-        if ($linhas[2] == $id) {
-            break;
+        if ($linhas[2] != $id) {
+            fwrite($arqAlunNovo, $linha);
         }
-        fwrite($arqAlunNovo, $linha);
     }
 
     fclose($arqAlun);
     fclose($arqAlunNovo);
 
-    $msg = "excluído";
+    $msg = "excluido";
 }
 
 ?>

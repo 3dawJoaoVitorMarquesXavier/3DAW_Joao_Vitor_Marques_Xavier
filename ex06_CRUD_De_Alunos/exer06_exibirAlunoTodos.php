@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exibir ALunos</title>
+    <title>Exibir Alunos</title>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
         $linha = fgets($arqAlun);
 
         while (!feof($arqAlun)) {
-            $linha = fgets($arqDisc);
+            $linha = fgets($arqAlun);
             $linhas = explode(";", $linha);
 
             echo '<tr>';

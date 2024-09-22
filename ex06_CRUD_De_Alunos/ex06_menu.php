@@ -15,17 +15,17 @@
             </a>
         </li>
         <li>
-            <a href="ex05_alterarDisciplina.php">
+            <a href="exer06_alterarAluno.php">
                 <p>alterar aluno</p>
             </a>
         </li>
         <li>
-            <a href="exer05_excluirDisciplina.php">
+            <a href="exer06_excluirAluno.php">
                 <p>excluir aluno</p>
             </a>
         </li>
         <li>
-            <a href="exer06_exibirAluno.php">
+            <a href="exer06_exibirALuno.php">
                 <p>exibir um aluno</p>
             </a>
         </li>

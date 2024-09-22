@@ -1,34 +1,50 @@
 <?php
-$nome = "";
-$cpf = "";
-$matricula = "";
-$dataNasc = "";
-$id = "";
+$nome;
+$cpf;
+$matricula;
+$dataNasc;
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nome = $_POST["nome"];
-    $matricula = strval($_POST["matricula"]);
-    $cpf = strval($_POST["cpf"]);
-    $dataNasc = $_POST["dataNasc"]->format('Y-m-d H:i:s');
-    $id = $_POST("id");
-    $msg = "";
+$msg = "";
 
-    $arqAlun = fopen("disciplinas.txt", "r") or die("erro ao abrir arquivo");
-    $arqAlunNovo = fopen("disciplinas.txt", "w") or die("erro ao abrir arquivo");
+function alterarNoArq($arqAntigo, $arqNovo, $nome, $cpf, $matricula, $dataNasc)
+    {
+        $linha = fgets($arqAntigo);
+        fwrite($arqNovo,$linha);
 
-    $linha = fgets($arqAlun);
-    fwrite($arqAlunNovo, $linha);
-
-    while (!feof($arqAlun)) {
-        $linha = fgets($arqAlun);
+    while(!feof($arqAntigo)) {
+        $linha = fgets($arqAntigo);
         $linhas = explode(";", $linha);
-        if ($linhas[2] == $cpf) {
-            $linha = $nome . ';' . $matricula . ';' . $cpf . ';' . $dataNasc . '\n';
+        if (strval($linhas[2]) == $cpf){
+            $linha = $nome . ";" . $matricula . ";" . $cpf . ";" . $dataNasc . "\n";
         }
-        fwrite($arqAlunNovo, $linha);
+        fwrite($arqNovo,$linha);
+     }
+
+    fclose($arqAntigo);
+    fclose($arqNovo);
+    
     }
-    fclose($arqAlun);
-    fclose($arqAlunNovo);
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST')  {
+
+    $nome = $_POST["nome"];
+    $cpf = strval($_POST["cpf"]);
+    $matricula = strval($_POST["matricula"]);
+    $dataNasc = strval($_POST["dataNasc"]);
+    $msg = "";
+    
+    $arqAlun = fopen("alunos.csv","r") or die("erro ao abrir arquivo");
+    $arqAlunTemp = fopen("alunos2.csv","w") or die("erro ao abrir arquivo");
+
+    alterarNoArq($arqAlun, $arqAlunTemp, $nome, $cpf, $matricula, $dataNasc);
+
+    $arqAlunTemp = fopen("aluno2.csv","r") or die("erro ao abrir arquivo");
+    $arqAlun = fopen("alunos.csv","w") or die("erro ao abrir arquivo");
+
+    alterarNoArq($arqAlunTemp, $arqAlun, $nome, $cpf, $matricula, $dataNasc);
+
+    unlink("alunos2.csv");
+    
     $msg = "Deu tudo certo!!!";
 }
 ?>
@@ -45,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <?php include("ex06_menu.php"); ?>
 
 <body>
-    <p><?php $msg ?></p>
+    <p><?php echo $msg ?></p>
 </body>
 
 </html>

@@ -9,7 +9,7 @@
 
 <body>
 
-    <?php include("escolher.php"); ?>
+<?php include("ex06_menu.php"); ?>
 
     <h1>excluir</h1>
 

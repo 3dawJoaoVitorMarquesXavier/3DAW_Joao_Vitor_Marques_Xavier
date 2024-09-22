@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $alt_nome = $linhas[0];
             $alt_matricula = $linhas[1];
             $alt_cpf = $linhas[2];
-            $alt_data = $linhas[3];
+            $alt_data = strval($linhas[3]);
         }
     }
 
@@ -42,8 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         <label>CPF: </label>
         <input type="number" name="cpf" value="<?php echo $alt_cpf; ?>">
         <label>Data de nascimento: </label>
-        <input type="date" name="dataNasc" value="<?php echo $alt_data; ?>">
-        <input type="hidden" name="id" value="<?php $cpf ?>">
+        <input type="date" id="definirData" name="dataNasc">
         <input type="submit" value="alterar dados do aluno>">
     </form>
 </body>
