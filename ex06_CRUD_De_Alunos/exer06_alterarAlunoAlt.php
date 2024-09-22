@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         <input type="number" name="cpf" value="<?php echo $alt_cpf; ?>">
         <label>Data de nascimento: </label>
         <input type="date" id="definirData" name="dataNasc">
+        <input type="hidden" id="id" name="id" value="<?php echo $alt_cpf?>">
         <input type="submit" value="alterar dados do aluno>">
     </form>
 </body>

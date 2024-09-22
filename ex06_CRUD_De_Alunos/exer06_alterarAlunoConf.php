@@ -3,10 +3,11 @@ $nome;
 $cpf;
 $matricula;
 $dataNasc;
+$id;
 
 $msg = "";
 
-function alterarNoArq($arqAntigo, $arqNovo, $nome, $cpf, $matricula, $dataNasc)
+function alterarNoArq($arqAntigo, $arqNovo, $nome, $cpf, $matricula, $dataNasc, $id)
     {
         $linha = fgets($arqAntigo);
         fwrite($arqNovo,$linha);
@@ -14,7 +15,7 @@ function alterarNoArq($arqAntigo, $arqNovo, $nome, $cpf, $matricula, $dataNasc)
     while(!feof($arqAntigo)) {
         $linha = fgets($arqAntigo);
         $linhas = explode(";", $linha);
-        if (strval($linhas[2]) == $cpf){
+        if ($linhas[2] == $id){
             $linha = $nome . ";" . $matricula . ";" . $cpf . ";" . $dataNasc . "\n";
         }
         fwrite($arqNovo,$linha);
@@ -31,17 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')  {
     $cpf = strval($_POST["cpf"]);
     $matricula = strval($_POST["matricula"]);
     $dataNasc = strval($_POST["dataNasc"]);
+
+    $id = $_POST["id"];
+
     $msg = "";
     
     $arqAlun = fopen("alunos.csv","r") or die("erro ao abrir arquivo");
     $arqAlunTemp = fopen("alunos2.csv","w") or die("erro ao abrir arquivo");
 
-    alterarNoArq($arqAlun, $arqAlunTemp, $nome, $cpf, $matricula, $dataNasc);
+    alterarNoArq($arqAlun, $arqAlunTemp, $nome, $cpf, $matricula, $dataNasc, $id);
 
-    $arqAlunTemp = fopen("aluno2.csv","r") or die("erro ao abrir arquivo");
+    $arqAlunTemp = fopen("alunos2.csv","r") or die("erro ao abrir arquivo");
     $arqAlun = fopen("alunos.csv","w") or die("erro ao abrir arquivo");
 
-    alterarNoArq($arqAlunTemp, $arqAlun, $nome, $cpf, $matricula, $dataNasc);
+    alterarNoArq($arqAlunTemp, $arqAlun, $nome, $cpf, $matricula, $dataNasc, $id);
 
     unlink("alunos2.csv");
     
