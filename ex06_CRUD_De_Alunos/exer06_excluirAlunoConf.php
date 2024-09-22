@@ -2,27 +2,41 @@
 
 $msg = "erro";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+function excluirNoArq($arqAntigo, $arqNovo, $id)
+    {
+        $linha = fgets($arqAntigo);
+        fwrite($arqNovo,$linha);
 
-    $id = $_POST["cpf"];
+    while(!feof($arqAntigo)) {
+        $linha = fgets($arqAntigo);
+        $linhas = explode(";", $linha);
+        if ($linhas[2] != $id){
+            fwrite($arqNovo,$linha);
+        }
+     }
 
-    $arqAlun = fopen("alunos.csv", "r");
-    $arqAlunNovo = fopen("alunos.csv", "w");
+    fclose($arqAntigo);
+    fclose($arqNovo);
+    
+    }
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+    $id = $_GET["cpf"];
 
     $msg = "";
 
-    $linha = fgets($arqAlun);
+    $arqAlun = fopen("alunos.csv", "r");
+    $arqAlunNovo = fopen("alunos2.csv", "w");
 
-    while (!feof($arqAlun)) {
-        $linha = fgets($arqAlun);
-        $linhas = explode($linha, ";");
-        if ($linhas[2] != $id) {
-            fwrite($arqAlunNovo, $linha);
-        }
-    }
+    excluirNoArq($arqAlun, $arqAlunNovo, $id);
 
-    fclose($arqAlun);
-    fclose($arqAlunNovo);
+    $arqAlun = fopen("alunos2.csv", "r");
+    $arqAlunNovo = fopen("alunos.csv", "w");
+
+    excluirNoArq($arqAlun, $arqAlunNovo, $id);
+
+    unlink("alunos2.csv");
 
     $msg = "excluido";
 }
@@ -41,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <?php include("ex06_menu.php"); ?>
 
-    <p><?php $msg ?></p>
+    <p><?php echo $msg ?></p>
 </body>
 
 </html>
