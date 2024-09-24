@@ -1,0 +1,2 @@
+id;pergunta;alternativa_A;alternativa_B;alternativa_C;alternativa_D;gabarito
+66f2cae98b677;QUAL?;esse;outro;sla;sla2;alternativa_d
