@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $arqPerg = fopen("perguntas.txt", "w") or die("erro ao criar arquivo");
         $linha = "id;pergunta;alternativa_A;alternativa_B;alternativa_C;alternativa_D;gabarito\n";
         fwrite($arqPerg, $linha);
+        fclose($arqPerg);
     }
 
     $arqPerg = fopen("perguntas.txt", "a") or die("erro ao criar arquivo");
