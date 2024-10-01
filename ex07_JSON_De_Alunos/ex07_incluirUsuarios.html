@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        function enviarUsuario()
+        {
+            let objForm = document.getElementById("formUsuario");
+
+            let name = document.getElementById("nameid").value;
+            let email = document.getElementById("emailid").value;
+            let senha = document.getElementById("senhaid").value;
+
+            let objJSON = JSON.stringify(objForm);
+            console.log("obj json="+objJSON);
+            
+            let xmlhttpRequest = new XMLHttpRequest();
+            console.log("1");
+            xmlhttpRequest.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log("Chegou a resposta OK: " + this.responseText);
+                    console.log("2");
+                    document.getElementById("msg").innerHTML = this.responseText;
+                } else
+                    if (this.readyState < 4) {
+                        console.log("3: " + this.readyState);
+                    } else {
+                        console.log("Requisicao falhou: " + this.status);
+            }
+            }
+            console.log("4");
+            xmlhttpRequest.open("GET", "http://localhost/3DAW_Joao_Vitor_Marques_Xavier/ex07_JSON_De_Alunos/ex07_incluirUsuarios.php?name"+name+"&email="+email+"&senha="+senha);
+            xmlhttpRequest.send();
+            console.log("enviei form");
+            console.log("5");
+        }
+        function ValidaForm(pnome, pemail, psenha) {
+            let msg = "";
+            if (pemail == "") msg = "email não preenchido. <br>";
+
+            return msg;
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>Incluir usuarios</h1>
+    <form action="" method="POST" id="formUsuario">
+        <label>nome</label>
+        <input type="text" name="nome" id="nomeid">
+        <br><br>
+        <label>email</label>
+        <input type="email" name="email" id="emailid" required>
+        <br><br>
+        <label>senha</label>
+        <input type="password" name="senha" id="senhaid">
+        <br><br>
+        <input type="button" value="Incluir usuario" onclick="enviarUsuario();">
+    </form>
+    <p id="msg"></p>
+    <br>
+</body>
+
+</html>
