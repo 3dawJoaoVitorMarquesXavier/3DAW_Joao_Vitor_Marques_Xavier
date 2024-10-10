@@ -2,6 +2,10 @@
 <html>
 
 <head>
+</head>
+
+<body>
+
     <script>
         function enviarUsuario()
         {
@@ -12,10 +16,11 @@
             let senha = document.getElementById("senhaid").value;
 
             let objJSON = JSON.stringify(objForm);
-            console.log("obj json="+objJSON);
+            console.log(`objform = ${objForm}`);
             
             let xmlhttpRequest = new XMLHttpRequest();
             console.log("1");
+
             xmlhttpRequest.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200) {
                     console.log("Chegou a resposta OK: " + this.responseText);
@@ -28,25 +33,23 @@
                         console.log("Requisicao falhou: " + this.status);
             }
             }
+
             console.log("4");
             xmlhttpRequest.open("GET", "http://localhost/3DAW_Joao_Vitor_Marques_Xavier/ex07_JSON_De_Alunos/ex07_incluirUsuarios.php?name"+name+"&email="+email+"&senha="+senha);
             xmlhttpRequest.send();
             console.log("enviei form");
             console.log("5");
         }
-        function ValidaForm(pnome, pemail, psenha) {
+        function ValidaForm(name, email, senha) {
             let msg = "";
             if (pemail == "") msg = "email não preenchido. <br>";
 
             return msg;
         }
     </script>
-</head>
-
-<body>
 
     <h1>Incluir usuarios</h1>
-    <form action="" method="POST" id="formUsuario">
+    <form action="" method="GET" id="formUsuario">
         <label>nome</label>
         <input type="text" name="nome" id="nomeid">
         <br><br>
