@@ -1,4 +1,6 @@
 id;pergunta;alternativa_A;alternativa_B;alternativa_C;alternativa_D;gabarito
 6713a8754dbc8;teste?;sim;nao;sera;sla;alternativa_a
-6713a95006832;oi;ola;sla;nao;uhum;on
 6713a9b66014e;opa;eita;bbb;ccc;ddd;alternativa_a
+67143ca8a97c6;tudo bom?;sim;sla;talvez;sera;on
+67143d16f1ae7;tudo bem?;nao;sla;talvez;sera;on
+67143d3049997;tudo ok?;aaa;bbb;ddd;fff;alternativa_b

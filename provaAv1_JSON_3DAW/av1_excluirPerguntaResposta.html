@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Pergunta</title>
+</head>
+
+<body>
+
+    <script src="http://localhost/3DAW_Joao_Vitor_Marques_Xavier/provaAv1_JSON_3DAW/request.js"></script>
+    <script>
+        function enviarForm() {
+
+            let id = document.getElementById("idPergunta").value;
+
+            let dados = {"id":id};
+
+            httpRequest("POST", "http://localhost/3DAW_Joao_Vitor_Marques_Xavier/provaAv1_JSON_3DAW/av1_excluirPerguntaRespostaArquivo.php", dados).then(function(response)
+            {
+                console.log(response);
+
+                document.getElementById("msg").innerHTML=`${response}`;
+            });
+        }
+    </script>
+
+    <a href="av1_menuPerguntaResposta.html">menu</a>
+
+    <h1>Excluir uma pergunta</h1>
+
+    <form action="" method="POST">
+        <label>ID: </label>
+        <input type="text" id="idPergunta">
+        <input type="button" value="enviar" onclick="enviarForm();">
+    </form>
+
+    <p id="msg"></p>
+</body>
+
+</html>

@@ -32,5 +32,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     fclose($arqPerg);
 
 
-    $msg = "Pergunta adicionada!!!";
+    echo $msg = "Pergunta adicionada!!!";
 }

@@ -14,12 +14,18 @@
             let senha = document.getElementById("senha").value;
 
             let dados = {"nomePost":nome,"emailPost":email,"senhaPost":senha};
+            
+            httpRequest("POST", "http://localhost/3DAW_Joao_Vitor_Marques_Xavier/provaAv1_JSON_3DAW/av1_incluirUsuarios.php", dados).then(function(response)
+            {
+                console.log(response);
 
-            const msg = httpRequest("POST", "http://localhost/3DAW_Joao_Vitor_Marques_Xavier/provaAv1_JSON_3DAW/av1_incluirUsuarios.php", dados);
-
-            document.getElementById("msg").innerHTML = msg;
+                document.getElementById("msg").innerHTML=`${response}`;
+            });
         }
     </script>
+
+    <a href="av1_menuPerguntaResposta.html">menu</a>
+
     <h1>Incluir usuarios</h1>
     <form action="" method="POST">
         <label>nome</label>
