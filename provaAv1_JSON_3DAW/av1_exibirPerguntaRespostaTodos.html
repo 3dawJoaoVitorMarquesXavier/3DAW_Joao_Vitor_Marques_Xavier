@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar todas as perguntas com gabarito</title>
+</head>
+<script src="http://localhost/3DAW_Joao_Vitor_Marques_Xavier/provaAv1_JSON_3DAW/request.js"></script>
+<script>
+    
+    httpRequest("POST", "http://localhost/3DAW_Joao_Vitor_Marques_Xavier/provaAv1_JSON_3DAW/av1_exibirPerguntaRespostaTodos.php", null).then(function(response)
+    {
+    console.log(response);
+    let dados = JSON.parse(response);
+    console.log(dados);
+
+    let tabela = document.getElementById("tabela");
+
+    for(let i=0;i<dados.length;i++)
+    {
+        tabela.innerHTML+=
+            `<table  id="tabela">
+                <tr>
+                    <td>${dados[i].id}</td>
+                    <td>${dados[i].pergunta}</td>
+                    <td>${dados[i].alternativa_A}</td>
+                    <td>${dados[i].alternativa_B}</td>
+                    <td>${dados[i].alternativa_C}</td>
+                    <td>${dados[i].alternativa_D}</td>
+                    <td>${dados[i].gabarito}</td>
+                </tr>
+            </table>
+            `;
+    }
+    });
+</script>
+<body>
+
+    <table>
+        <tr>
+            <th>id</th><th>pergunta</th><th>alternativa A</th><th>alternativa B</th><th>alternativa C</th><th>alternativa D</th><th>gabarito</th>
+        </tr>
+    </table>
+
+    <section id="tabela"></section>
+
+    <p id="alo"></p>
+
+</body>
+
+</html>

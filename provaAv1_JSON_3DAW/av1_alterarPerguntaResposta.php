@@ -34,8 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
 
-    <?php include("av1_menuPerguntaResposta.php"); ?>
-
     <form action="av1_alterarPerguntaRespostaArquivo.php" method="POST">
         <label>pergunta: </label>
         <input type="text" name="pergunta" value="<?php echo $alt_pergunta; ?>">

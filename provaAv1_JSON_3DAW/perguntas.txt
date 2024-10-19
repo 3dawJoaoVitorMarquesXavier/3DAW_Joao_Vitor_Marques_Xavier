@@ -1,0 +1,4 @@
+id;pergunta;alternativa_A;alternativa_B;alternativa_C;alternativa_D;gabarito
+6713a8754dbc8;teste?;sim;nao;sera;sla;alternativa_a
+6713a95006832;oi;ola;sla;nao;uhum;on
+6713a9b66014e;opa;aaa;bbb;ccc;ddd;alternativa_c

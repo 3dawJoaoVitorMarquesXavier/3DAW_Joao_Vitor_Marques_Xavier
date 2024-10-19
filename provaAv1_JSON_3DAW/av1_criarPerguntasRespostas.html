@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar pergunta</title>
+</head>
+<body>
+    <script src="http://localhost/3DAW_Joao_Vitor_Marques_Xavier/provaAv1_JSON_3DAW/request.js"></script>
+    <script>
+          function enviarForm() {
+            let pergunta = document.getElementById("pergunta").value;
+            let a = document.getElementById("a").value;
+            let b = document.getElementById("b").value;
+            let c = document.getElementById("c").value;
+            let d = document.getElementById("d").value;
+            let alternativa = document.querySelector('input[name="alternativa"]:checked').value;
+
+            let dados = {"perguntaPost":pergunta,"aPost":a,"bPost":b,"cPost":c,"dPost":d,"gabaritoPost":alternativa};
+
+            const msg = httpRequest("POST", "http://localhost/3DAW_Joao_Vitor_Marques_Xavier/provaAv1_JSON_3DAW/av1_criarPerguntasRespostas.php", dados);
+
+            document.getElementById("msg").innerHTML = msg;
+        }
+    </script>
+    <h1>Criar perguntas e respostas</h1>
+    <form action="" method="POST">
+        pergunta: <input type="text" id="pergunta">
+        <br><br>
+        Resposta A: <input type="text" id="a">
+        <br><br>
+        Resposta B: <input type="text" id="b">
+        <br><br>
+        Resposta C: <input type="text" id="c">
+        <br><br>
+        Resposta D: <input type="text" id="d">
+        <br><br>
+        Gabarito:
+        <br><br>
+        <br><br>
+        Alternativa A<input type="radio" name="alternativa" value="alternativa_a">
+        <br><br>
+        Alternativa B<input type="radio" name="alternativa" alue="alternativa_b">
+        <br><br>
+        Alternativa C<input type="radio" name="alternativa" value="alternativa_c">
+        <br><br>
+        Alternativa D<input type="radio" name="alternativa" value="alternativa_d">
+        <br><br>
+        <input type="button" value="Enviar pergunta" onclick="enviarForm();">
+    </form>
+    <p id="msg"></p>
+    <br>
+</body>
+</html>
