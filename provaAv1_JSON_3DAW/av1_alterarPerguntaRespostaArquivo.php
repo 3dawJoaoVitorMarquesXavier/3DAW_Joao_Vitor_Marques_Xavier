@@ -22,16 +22,18 @@ function alterarNoArq($arqAntigo, $arqNovo, $pergunta, $resp1, $resp2, $resp3, $
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')  {
 
-    $pergunta = $_POST["pergunta"];
+    $dados = json_decode(file_get_contents("php://input"), true);
 
-    $resp1 = $_POST["a"];
-    $resp2 = $_POST["b"];
-    $resp3 = $_POST["c"];
-    $resp4 = $_POST["d"];
-    
-    $gabarito = $_POST["gabarito"];
+    $pergunta = $dados["perguntaPost"];
 
-    $id = $_POST["id"];
+    $resp1 = $dados["aPost"];
+    $resp2 = $dados["bPost"];
+    $resp3 = $dados["cPost"];
+    $resp4 = $dados["dPost"];
+
+    $gabarito = $dados["gabaritoPost"];
+
+    $id = $dados["id"];
 
     $msg = "";
     
@@ -49,21 +51,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')  {
     
     $msg = "Deu tudo certo!!!";
 }
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alterar Perguntas</title>
-</head>
-
-<?php include("av1_menuPerguntaResposta.php"); ?>
-
-<body>
-    <p><?php echo $msg ?></p>
-</body>
-
-</html>
+echo $msg;

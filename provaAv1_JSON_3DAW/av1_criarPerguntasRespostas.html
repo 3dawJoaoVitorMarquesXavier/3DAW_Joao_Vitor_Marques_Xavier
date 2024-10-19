@@ -18,9 +18,12 @@
 
             let dados = {"perguntaPost":pergunta,"aPost":a,"bPost":b,"cPost":c,"dPost":d,"gabaritoPost":alternativa};
 
-            const msg = httpRequest("POST", "http://localhost/3DAW_Joao_Vitor_Marques_Xavier/provaAv1_JSON_3DAW/av1_criarPerguntasRespostas.php", dados);
+            httpRequest("POST", "http://localhost/3DAW_Joao_Vitor_Marques_Xavier/provaAv1_JSON_3DAW/av1_criarPerguntasRespostas.php", dados).then(function(response)
+            {
+                console.log(response);
 
-            document.getElementById("msg").innerHTML = msg;
+                document.getElementById("msg").innerHTML=`${response}`;
+            });
         }
     </script>
     <h1>Criar perguntas e respostas</h1>

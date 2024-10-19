@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exibir pergunta</title>
+</head>
+
+<body>
+
+    <script src="http://localhost/3DAW_Joao_Vitor_Marques_Xavier/provaAv1_JSON_3DAW/request.js"></script>
+    <script>
+        function enviarForm() {
+
+            let id = document.getElementById("idPergunta").value;
+
+            let dados = {"id":id};
+
+            httpRequest("POST", "http://localhost/3DAW_Joao_Vitor_Marques_Xavier/provaAv1_JSON_3DAW/av1_exibirPerguntaResposta.php", dados).then(function(response)
+            {
+                console.log(response);
+                let dados = JSON.parse(response);
+
+                document.getElementById("pergunta").innerHTML=`Pergunta: ${dados[0].pergunta}`;
+                document.getElementById("a").innerHTML=`Alternativa A: ${dados[0].alternativa_A}`;
+                document.getElementById("b").innerHTML=`Alternativa B: ${dados[0].alternativa_B}`;
+                document.getElementById("c").innerHTML=`Alternativa C: ${dados[0].alternativa_C}`;
+                document.getElementById("d").innerHTML=`Alternativa D: ${dados[0].alternativa_D}`;
+                document.getElementById("gabarito").innerHTML=`Gabarito: ${dados[0].gabarito}`;
+                document.getElementById("id").innerHTML=`ID: ${dados[0].id}`;
+            });
+        }
+    </script>
+    <h1>Exibir uma pergunta com gabarito</h1>
+    
+    <form action="" method="POST">
+        <label>ID: </label>
+        <input type="text" id="idPergunta">
+        <input type="button" value="enviar" onclick="enviarForm();">
+    </form>
+    <br><br>
+    <ul>
+        <li id="id"></li>
+        <li id="pergunta"></li>
+        <li id="a"></li>
+        <li id="b"></li>
+        <li id="c"></li>
+        <li id="d"></li>
+        <li id="gabarito"></li>
+    </ul>
+
+</body>
+
+</html>
