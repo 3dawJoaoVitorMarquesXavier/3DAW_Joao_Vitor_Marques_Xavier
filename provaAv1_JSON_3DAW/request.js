@@ -10,7 +10,7 @@ function httpRequest(tipo, url, dados){
                 console.log("Estado: " + this.readyState);
             } else if (this.readyState == 4 && this.status !== 200) {
                 console.log("Requisição falhou: " + this.status);
-                reject(new Error("Request failed with status " + this.status)); 
+                reject(new Error(this.status)); 
             }
         };
 
