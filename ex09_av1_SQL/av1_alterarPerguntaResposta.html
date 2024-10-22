@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar Pergunta</title>
+</head>
+
+<body>
+    <script src="http://localhost/3DAW_Joao_Vitor_Marques_Xavier/provaAv1_JSON_3DAW/request.js"></script>
+    <script>
+        function enviarFormSelecionar() {
+
+            let id = document.getElementById("idPergunta").value;
+
+            let dados = {"id":id};
+
+            httpRequest("POST", "http://localhost/3DAW_Joao_Vitor_Marques_Xavier/provaAv1_JSON_3DAW/av1_alterarPerguntaResposta.php", dados).then(function(response)
+            {
+                console.log(response);
+                let dados = JSON.parse(response);
+
+                document.getElementById("pergunta").value=`${dados[0].pergunta}`;
+                document.getElementById("a").value=`${dados[0].alternativa_A}`;
+                document.getElementById("b").value=`${dados[0].alternativa_B}`;
+                document.getElementById("c").value=`${dados[0].alternativa_C}`;
+                document.getElementById("d").value=`${dados[0].alternativa_D}`;
+                document.getElementById("gabarito").innerHTML=`Gabarito atual: ${dados[0].gabarito}`;
+                document.getElementById("id").value=`${dados[0].id}`;
+            });
+        }
+
+        function enviarFormAlt() {
+
+            let pergunta = document.getElementById("pergunta").value;
+            let a = document.getElementById("a").value;
+            let b = document.getElementById("b").value;
+            let c = document.getElementById("c").value;
+            let d = document.getElementById("d").value;
+            let id = document.getElementById("id").value;
+            let alternativa = document.querySelector('input[name="alternativa"]:checked').value;
+
+            let dados = {"perguntaPost":pergunta,"aPost":a,"bPost":b,"cPost":c,"dPost":d,"gabaritoPost":alternativa,"id":id};
+
+            httpRequest("POST", "http://localhost/3DAW_Joao_Vitor_Marques_Xavier/provaAv1_JSON_3DAW/av1_alterarPerguntaRespostaArquivo.php", dados).then(function(response)
+            {
+                console.log(response);
+
+                document.getElementById("msg").innerHTML=`${response}`;
+            });
+        }
+    </script>
+    
+    <a href="av1_menuPerguntaResposta.html">menu</a>
+
+    <h1>Alterar Pergunta</h1>
+
+    <form action="" method="POST">
+        <label>ID: </label>
+        <input type="text" id="idPergunta">
+        <input type="button" value="enviar" onclick="enviarFormSelecionar();">
+    </form>
+    <br><br>
+    <form action="" method="POST">
+        <label>pergunta: </label>
+        <input type="text" id="pergunta" value="">
+        <br><br>
+        <label>Alternativa A: </label>
+        <input type="text" id="a" value="">
+        <br><br>
+        <label>Alternativa B: </label>
+        <input type="text" id="b" value="">
+        <br><br>
+        <label>Alternativa C: </label>
+        <input type="text" id="c" value="">
+        <br><br>
+        <label>Alternativa D: </label>
+        <input type="text" id="d" value="">
+        <br><br>
+        <br><br>
+        <label id="gabarito"></label>
+        <br><br>
+        <p>Alterar</p>
+        <label>A </label>
+        <input type="radio" name="alternativa" value="alternativa_a">
+        <br><br>
+        <label>B </label>
+        <input type="radio" name="alternativa" value="alternativa_b">
+        <br><br>
+        <label>C </label>
+        <input type="radio" name="alternativa" value="alternativa_c">
+        <br><br>
+        <label>D </label>
+        <input type="radio" name="alternativa" value="alternativa_d">
+        <br><br>
+        <input type="hidden" id="id" value="">
+        <input type="button" value="alterar dados da pergunta>" onclick="enviarFormAlt();">
+    </form>
+
+    <p id="msg"></p>
+
+</body>
+
+</html>

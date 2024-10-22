@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>incluirUsuarios</title>
+</head>
+<body>
+    <script src="http://localhost/3DAW_Joao_Vitor_Marques_Xavier/provaAv1_JSON_3DAW/request.js"></script>
+    <script>
+        function enviarForm() {
+            let nome = document.getElementById("nome").value;
+            let email = document.getElementById("email").value;
+            let senha = document.getElementById("senha").value;
+
+            let dados = {"nomePost":nome,"emailPost":email,"senhaPost":senha};
+            
+            httpRequest("POST", "http://localhost/3DAW_Joao_Vitor_Marques_Xavier/provaAv1_JSON_3DAW/av1_incluirUsuarios.php", dados).then(function(response)
+            {
+                console.log(response);
+
+                document.getElementById("msg").innerHTML=`${response}`;
+            });
+        }
+    </script>
+
+    <a href="av1_menuPerguntaResposta.html">menu</a>
+
+    <h1>Incluir usuarios</h1>
+    <form action="" method="POST">
+        <label>nome</label>
+        <input type="text" name="nome" id="nome">
+        <br><br>
+        <label>email</label>
+        <input type="email" name="email" id="email">
+        <br><br>
+        <label>senha</label>
+        <input type="password" name="senha" id="senha">
+        <br><br>
+        <input type="button" value="Incluir usuario" onclick="enviarForm();">
+    </form>
+    <p id="msg"></p>
+    <br>
+</body>
+</html>
