@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exibir Aluno</title>
+</head>
+
+<body>
+
+    <script src="http://localhost/3DAW_Joao_Vitor_Marques_Xavier/CRUD_Alunos_JS_BD/request.js"></script>
+    <script>
+        function enviarForm() {
+
+            let id = document.getElementById("matricula").value;
+
+            let dados = {"id":id};
+
+            httpRequest("POST", "http://localhost/3DAW_Joao_Vitor_Marques_Xavier/CRUD_Alunos_JS_BD/exibirAluno.php", dados).then(function(response)
+            {
+                console.log(response);
+                let dados = JSON.parse(response);
+
+                document.getElementById("matricula_exibir").innerHTML=`matricula: ${dados[0].matricula}`;
+                document.getElementById("nome").innerHTML=`nome: ${dados[0].nome}`;
+                document.getElementById("cpf").innerHTML=`cpf: ${dados[0].cpf}`;
+                document.getElementById("data_matricula").innerHTML=`data matricula: ${dados[0].data_matricula}`;
+            });
+        }
+    </script>
+
+    <a href="menu_controleAlunos.html">menu</a>
+
+    <h1>Exibir Aluno</h1>
+    
+    <form action="" method="POST">
+        <label>Matricula: </label>
+        <input type="text" id="matricula">
+        <input type="button" value="enviar" onclick="enviarForm();">
+    </form>
+    <br><br>
+    <ul>
+        <li id="matricula_exibir"></li>
+        <li id="nome"></li>
+        <li id="cpf"></li>
+        <li id="data_matricula"></li>
+    </ul>
+
+</body>
+
+</html>

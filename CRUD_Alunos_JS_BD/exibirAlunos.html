@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Alunos</title>
+</head>
+<script src="http://localhost/3DAW_Joao_Vitor_Marques_Xavier/CRUD_Alunos_JS_BD/request.js"></script>
+<script>
+    
+    httpRequest("POST", "http://localhost/3DAW_Joao_Vitor_Marques_Xavier/CRUD_Alunos_JS_BD/exibirAlunos.php", null).then(function(response)
+    {
+    console.log(response);
+    let dados = JSON.parse(response);
+    console.log(dados);
+
+    let tabela = document.getElementById("tabela");
+
+    for(let i=0;i<dados.length;i++)
+    {
+        tabela.innerHTML+=
+            `<table  id="tabela">
+                <tr>
+                    <td>${dados[i].matricula}</td>
+                    <td>${dados[i].nome}</td>
+                    <td>${dados[i].cpf}</td>
+                    <td>${dados[i].data_matricula}</td>
+                </tr>
+            </table>
+            `;
+    }
+    });
+</script>
+<body>
+
+    <a href="menu_controleAlunos.html">menu</a>
+    
+    <h1>Listar todos os alunos</h1>
+    
+    <table>
+        <tr>
+            <th>matricula</th><th>nome</th><th>cpf</th><th>data_matricula</th>
+        </tr>
+    </table>
+
+    <section id="tabela"></section>
+
+</body>
+
+</html>

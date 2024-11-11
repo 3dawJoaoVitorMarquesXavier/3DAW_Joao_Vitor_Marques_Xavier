@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incluir Alunos</title>
+</head>
+<body>
+    <script src="http://localhost/3DAW_Joao_Vitor_Marques_Xavier/CRUD_Alunos_JS_BD/request.js"></script>
+    <script>
+        function enviarForm() {
+            let nome = document.getElementById("nome").value;
+            let matricula = document.getElementById("matricula").value;
+            let cpf = document.getElementById("cpf").value;
+
+            let dados = {"nome":nome,"matricula":matricula.toString(),"cpf":cpf.toString()};
+            
+            console.log(dados);
+
+            httpRequest("POST", "http://localhost/3DAW_Joao_Vitor_Marques_Xavier/CRUD_Alunos_JS_BD/incluirAlunos.php", dados).then(function(response)
+            {
+                console.log(response);
+                document.getElementById("msg").innerHTML=`${response}`;
+            });
+        }
+    </script>
+
+    <a href="menu_controleAlunos.html">menu</a>
+
+    <h1>Incluir alunos</h1>
+    <form action="" method="POST">
+        <label>nome</label>
+        <input type="text" name="nome" id="nome">
+        <br><br>
+        <label>matricula</label>
+        <input type="number" name="matricula" id="matricula">
+        <br><br>
+        <label>cpf</label>
+        <input type="number" name="cpf" id="cpf">
+        <br><br>
+        <input type="button" value="Incluir aluno" onclick="enviarForm();">
+    </form>
+    <p id="msg"></p>
+    <br>
+</body>
+</html>
